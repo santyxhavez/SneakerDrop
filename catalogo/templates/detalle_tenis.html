@@ -1,0 +1,28 @@
+{% extends 'catalogo/base.html' %}
+{% block title %}{{ tenis.marca.nombre }} {{ tenis.modelo }}{% endblock %}
+
+{% block content %}
+    <div style="display: flex; gap: 50px; background: #fff; padding: 40px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.08);">
+        <div style="flex: 1;">
+            {% if tenis.imagen %}
+                <img src="{{ tenis.imagen.url }}" style="width: 100%; border-radius: 8px; object-fit: cover;">
+            {% endif %}
+        </div>
+        <div style="flex: 1;">
+            <h3 style="color: #888; text-transform: uppercase; margin: 0;">{{ tenis.marca.nombre }}</h3>
+            <h1 style="font-size: 2.8em; margin: 5px 0;">{{ tenis.modelo }}</h1>
+            <p style="font-size: 2em; font-weight: bold; color: #ff4757; margin-bottom: 30px;">${{ tenis.precio }}</p>
+            
+            <hr style="border: none; border-top: 1px solid #eee; margin-bottom: 30px;">
+            
+            <ul style="line-height: 2.2; font-size: 1.1em; color: #555; list-style-type: square;">
+                <li><b>Categoría:</b> {{ tenis.categoria.nombre }}</li>
+                <li><b>Talla (CM):</b> {{ tenis.talla }}</li>
+                <li><b>Atendido por:</b> {{ tenis.vendedor.nombre }} ({{ tenis.vendedor.sucursal }})</li>
+            </ul>
+            
+            <br><br>
+            <a href="{% url 'home' %}" class="btn" style="background: #000;">&larr; Volver al catálogo</a>
+        </div>
+    </div>
+{% endblock %}
