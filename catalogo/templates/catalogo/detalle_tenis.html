@@ -15,10 +15,20 @@
             
             <hr style="border: none; border-top: 1px solid #eee; margin-bottom: 30px;">
             
-            <ul style="line-height: 2.2; font-size: 1.1em; color: #555; list-style-type: square;">
+            <ul style="line-height: 2.5; font-size: 1.1em; color: #555; list-style-type: square;">
                 <li><b>Categoría:</b> {{ tenis.categoria.nombre }}</li>
-                <li><b>Talla (CM):</b> {{ tenis.talla }}</li>
-                <li><b>Atendido por:</b> {{ tenis.vendedor.nombre }} ({{ tenis.vendedor.sucursal }})</li>
+                <li><b>Talla (US/MX):</b> {{ tenis.talla }}</li>
+                <li><b>Atendido por:</b> {{ tenis.vendedor.nombre }} (Sucs. {{ tenis.vendedor.sucursal }})</li>
+                
+                <li><b>Materiales de fabricación:</b> 
+                    {% for material in tenis.materiales.all %}
+                        <span style="background: #e1e8ed; color: #333; padding: 4px 10px; border-radius: 20px; font-size: 0.9em; font-weight: bold; margin-right: 5px;">
+                            {{ material.nombre }}
+                        </span>
+                    {% empty %}
+                        <span style="color: #999;">No especificados</span>
+                    {% endfor %}
+                </li>
             </ul>
             
             <br><br>

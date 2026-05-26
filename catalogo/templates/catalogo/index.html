@@ -1,3 +1,5 @@
+HTML
+
 {% extends 'catalogo/base.html' %}
 {% block title %}SneakerDrop - Catálogo{% endblock %}
 
@@ -14,14 +16,18 @@
 
     <div style="display: flex; gap: 25px; flex-wrap: wrap; justify-content: center;">
         {% for tenis in lista_tenis %}
-            <div style="background: #fff; padding: 20px; border-radius: 8px; width: 250px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: center;">
-                {% if tenis.imagen %}
-                    <img src="{{ tenis.imagen.url }}" style="width: 100%; height: 200px; object-fit: cover; border-radius: 4px; margin-bottom: 15px;">
-                {% endif %}
-                <h4 style="margin: 0; color: #888;">{{ tenis.marca.nombre }}</h4>
-                <h3 style="margin: 5px 0 15px 0;">{{ tenis.modelo }}</h3>
-                <p style="font-size: 1.4em; font-weight: bold; color: #ff4757; margin: 0 0 15px 0;">${{ tenis.precio }}</p>
-                <a href="{% url 'detalle' tenis.id %}" class="btn" style="display: block;">Ver Detalles</a>
+            <div style="background: #fff; padding: 20px; border-radius: 8px; width: 250px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: center; display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                    {% if tenis.imagen %}
+                        <img src="{{ tenis.imagen.url }}" style="width: 100%; height: 200px; object-fit: cover; border-radius: 4px; margin-bottom: 15px;">
+                    {% endif %}
+                    <h4 style="margin: 0; color: #888; text-transform: uppercase;">{{ tenis.marca.nombre }}</h4>
+                    <h3 style="margin: 5px 0 15px 0;">{{ tenis.modelo }}</h3>
+                </div>
+                <div>
+                    <p style="font-size: 1.4em; font-weight: bold; color: #ff4757; margin: 0 0 15px 0;">${{ tenis.precio }}</p>
+                    <a href="{% url 'detalle' tenis.id %}" class="btn" style="display: block;">Ver Detalles</a>
+                </div>
             </div>
         {% empty %}
             <p style="font-size: 1.2em; color: #666;">No encontramos esos tenis, intenta con otra búsqueda.</p>
